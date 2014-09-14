@@ -1,0 +1,166 @@
+table {
+    border-collapse: collapse; 
+    margin: auto; 
+}
+
+td {
+    height: 20px;  
+    width: 20px;  
+    border: 1px solid #333;
+}
+
+.border-left{
+    border-left: solid 1px;
+}
+
+.border-right{
+    border-right: solid 1px;
+}
+
+.empty {
+    background-color: #555;
+}
+
+.blue.head {
+    background-color: #9FF3FF;
+}
+.blue.next {
+    background-color: #586366;
+}
+.blue {
+    background-color: #6FC3DF;
+}
+
+.orange.head {
+    background-color: #FFA43C;
+}
+.orange.next {
+    background-color: #66594C;
+}
+.orange {
+    background-color: #DF740C;
+}
+
+#page-wrapper {
+    width: 100%;
+    background: #999;
+    padding: 1em;
+    margin: 1em auto;
+    border-top: 5px solid #00c8fa;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    text-align: center;
+}
+
+.gameStyle{
+    width: 200px;
+    background: #00c8fa;
+    padding: 1em;
+    margin: 1em auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    display:table;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.gameStyle:hover{
+    box-shadow: none;
+}
+
+.gameStyleClicked{
+    box-shadow: none;
+}
+
+.centered{
+    margin: 0 auto;
+}
+
+#playground{
+    -moz-transition: top 2s ease;
+    -webkit-transition: top 2s ease;
+}
+
+.playDiv{
+    text-align: center;
+    background: #00c8fa;
+    padding: 1em;
+    margin: 1em auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#player1Name{
+    background-color: #FFA43C;
+}
+
+#player2Name{
+    background-color: #9FF3FF;
+}
+
+.table{
+    display:table;
+}
+
+.cell{
+    display:table-cell;
+}
+
+.quitOnLeft {
+    left: -500px;
+    -moz-transition: left 2s ease;
+    -webkit-transition: left 2s ease;
+    transition: left 2s ease;
+    -o-transition: left 2s ease;
+}
+
+.quitOnTop {
+    position : relative;
+    top: -500px;
+    -moz-transition: top 2s ease;
+    -webkit-transition: top 2s ease;
+    transition: left 2s ease;
+    -o-transition: left 2s ease;
+}
+
+.playerType{
+    margin: 0 auto; 
+    text-align: center;
+    width : 50%;
+    height : 75px;
+}
+
+.playerIcon{
+    width : 125px;
+    height : 125px;
+}
+
+.gameStyleLocalIcon{
+    width : 20px;
+    height : 20px;
+}
+
+.gameStyleDistantIcon{
+    width : 50px;
+    height : 20px;
+}
+
+.text-left{
+    display:table-cell;
+    max-width:33%;
+    width:33%;
+    text-align: right;
+}
+
+.text-center{
+    display:table-cell;
+    max-width:33%;
+    width:33%;
+    text-align: center;
+}
+
+.text-right{
+    display:table-cell;
+    max-width:33%;
+    width:33%;
+    text-align: left;
+}

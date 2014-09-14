@@ -1,0 +1,17 @@
+{
+    "name": "tron",
+    "version": "0.1.0",
+    "dependencies": {
+        "express": "*",
+        "socket.io": "*",
+        "ent": "*",
+        "ejs": "*",
+        "body-parser": "*",
+        "cookie-parser": "*",
+        "express-session": "*",
+        "chance": "*",
+        "jquery": "*"
+    },
+    "author": "Healkiss <francois_schneider@outlook.com>",
+    "description": "Joue avec les motos de tron"
+}

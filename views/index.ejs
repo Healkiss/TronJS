@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TRON</title>
+        
+        <link rel="icon" type="image/x-icon" href="favicon" />
+        <link rel='stylesheet' type='text/css' href='css/bootstrap.min.css'>
+        <link rel='stylesheet' type='text/css' href='css/tron.css'>
+    </head>
+    <body>
+        <div id="page-wrapper">
+            <h1>Tron v2</h1>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 border-right">
+                    <h4>Paramétres : </h4>
+                    <div class='gameStyle'>
+                        <label for='gamerName'>Votre pseudo</label>&nbsp;<input type="text" name='gamerName' placeholder='<%= gamerName %>'size='8'></input><br/>
+                    </div>
+                    <div class='gameStyle'>
+                        <label for='backgroundSize'>Taille du terrain</label>&nbsp;<input type="integer" name='backgroundSize' placeholder='taille' size='3'></input><br/>
+                        <i style="font-size:0.7em">max 48<br/></i>
+                    </div>
+                    
+                    <div class='gameStyle'>
+                        <label for='bikesNumber'>Nb de motos </label>&nbsp;<input type="integer" name='bikesNumber' placeholder='motos' size='3'></input><br/>
+                        <i style="font-size:0.7em">max 15<br/>
+                    </div>
+                    </i>
+                    <h4>Joueurs :</h4>
+                    <div class='gameStyle players' data-players='hvhl'>
+                        <span class='text-left'>Humain</span>
+                        <span class='text-center'>VS</span>
+                        <span class='text-right'>Humain</span>
+                        <img class='gameStyleLocalIcon cell' src='img/local.jpg' alt="même poste" title="même poste">
+                    </div>
+                    <div class='gameStyle players' data-players='hvhd'>
+                        <span class='text-left'>Humain</span>
+                        <span class='text-center'>VS</span>
+                        <span class='text-right'>Humain</span>
+                        <img class='gameStyleDistantIcon cell' src='img/distant.jpg' alt="postes distants" title="postes distants">
+                    </div>
+                    <div class='gameStyle players' data-players='hvia'>
+                        <span class='text-left'>Humain</span>
+                        <span class='text-center'>VS</span>
+                        <span class='text-right'>IA</span>
+                    </div>
+                    <div class='gameStyle players' data-players='iavia'>
+                         <span class='text-left'>IA</span>
+                        <span class='text-center'>VS</span>
+                        <span class='text-right'>IA</span>
+                    </div>
+                    <div class="playerTypes table">
+                        <div class="playerType cell border-right">
+                            <span id="player1Name" class="cell">Joueur1</span>
+                            <img id='player1Icon' class='playerIcon cell' src='img/typeUnknown.png'>
+                        </div>
+                        <div class="playerType cell" >
+                            <span id="player2Name" class="cell">Joueur 2</span>
+                            <img id='player2Icon' class='playerIcon cell' src='img/typeUnknown.png'>
+                        </div>
+                    </div>
+                </div>
+                <div id='game' class="col-md-8">
+                    <div class='centered setups'>
+                        <div class='playDiv'>
+                            <span id="gamerNameStep" class="alert alert-warning glyphicon"> Personnalise ton pseudo (<span id="gamerName"><%= gamerName %></span>)</span><br/>
+                            <span id="backgroundStep" class="alert alert-warning glyphicon"> Definis la taille du terrain (<span id="backgroundSize">20 x 20</span>)</span><br/>
+                            <span id="bikesNumberStep" class="alert alert-warning glyphicon"> Choisis un nombre de motos (<span id="bikesNumber">2</span>)</span><br/>
+                            <span id="bikesPlacementStep" class="alert alert-danger glyphicon glyphicon-remove"> Place les motos (<span id="bikesNumberToPlace">2</span>)</span><br/>
+                            <span id="gameTypeStep" class="alert alert-danger glyphicon glyphicon-remove"> Choisis les joueurs</span><br/>
+                            <button id="btnBegin" type="button" class='disabled btn btn-default'><span class='glyphicon glyphicon-play'> Commencer</span></button>
+
+                        </div>
+                    </div>
+                    <div id='background'>
+                    </div>
+                </div>
+                <div class="col-md-2 border-left">
+                    <div id="gamersName">
+
+                    </div>
+                    <div id="gamersLog">
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script type='text/javascript' src='js/jquery-2.1.0.min.js'></script>
+        <script type='text/javascript' src='js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='js/moto.js'></script>
+        <script type='text/javascript' src='js/player.js'></script>
+        <script type='text/javascript' src='js/tron.js'></script>
+        <script type='text/javascript' src='js/Modern-Blink/jquery.modern-blink.js'></script>
+        
+        <script>
+            window.onload = function(){
+                socket = io.connect('http://localhost:7120');
+                socket.on('new_gamerName', function(gamerName) {
+                    $("#gamerName").text(gamerName);
+                    var tron = new Tron({
+                                    backgroundSize  :20,
+                                    bikeNumber      :2,
+                                    socket          :socket,
+                                    gamerName       :gamerName,
+                                }
+                            );
+                    tron.init();
+                });
+                socket.on('new_gamer', function(gamerName) {
+                    $('#gamersName').prepend(gamerName);
+                    $('#gamersLog').prepend('<p><em>' + gamerName + ' nous a rejoint !</em></p>');
+                });
+            };
+        </script>
+    </body>
+
+</html>
